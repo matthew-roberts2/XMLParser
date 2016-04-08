@@ -10,7 +10,7 @@ public class OutsideTagState implements IXMLState{
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
-
+        //Change state to DetectTagState
     }
 
     @Override
