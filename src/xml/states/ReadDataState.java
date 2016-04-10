@@ -1,21 +1,31 @@
 package xml.states;
 
 import xml.InvalidTagException;
+import xml.XMLCheck;
 
-public class BetweenTagState implements IXMLState {
+public class ReadDataState implements IXMLState {
+
+    private XMLCheck checker;
+    private boolean errorFlag;
+
+    public ReadDataState(XMLCheck checker){
+        this.checker = checker;
+        errorFlag = false;
+    }
+
     @Override
     public void forwardSlashDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("Missplaced character \"/\"");
+        throw new InvalidTagException("(RDS)Misplaced character \"/\"");
     }
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
-        //GOTO EndBetweenTagState
+        checker.setState(new EndReadDataState(checker, errorFlag));
     }
 
     @Override
     public void greaterThanDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("Attempt to close tag without opening it");
+        throw new InvalidTagException("(RDS)Attempt to close tag without opening it");
     }
 
     @Override
@@ -25,6 +35,7 @@ public class BetweenTagState implements IXMLState {
 
     @Override
     public void regularCharacter(int lineNumber, char ch) throws InvalidTagException {
-        //NO-OP Continue constructing the data
+        //NO-OP Not worried about constructing the new file yet
+        errorFlag = true;
     }
 }

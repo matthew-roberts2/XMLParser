@@ -3,12 +3,14 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
-public class DetectTagState implements IXMLState{
+public class EndReadDataState implements IXMLState{
 
     private XMLCheck checker;
+    private boolean errorFlag;
 
-    public DetectTagState(XMLCheck checker){
+    public EndReadDataState(XMLCheck checker, boolean prevStateReadChars){
         this.checker = checker;
+        errorFlag = prevStateReadChars;
     }
 
     @Override
@@ -18,21 +20,24 @@ public class DetectTagState implements IXMLState{
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("(DTS)Opening another tag inside a tag");
+        throw new InvalidTagException("(ERDS)Attempting to open tag inside another tag");
     }
 
     @Override
     public void greaterThanDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("(DTS)No tag name specified");
+        throw new InvalidTagException("(ERDS)No tag name specified");
     }
 
     @Override
     public void whiteSpaceDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("(DTS)Whitespace cannot exist at the beginning of a tag");
+        throw new InvalidTagException("(ERDS)Whitespace not allowed in tag names");
     }
 
     @Override
     public void regularCharacter(int lineNumber, char ch) throws InvalidTagException {
+        if(errorFlag){
+            throw new InvalidTagException("(ERDS)Characters found between two opening tags");
+        }
         checker.setState(new NameTagState(checker, ch));
     }
 }

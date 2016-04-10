@@ -3,36 +3,39 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
-public class OutsideTagState implements IXMLState{
+public class NameTagState implements IXMLState{
 
     private XMLCheck checker;
+    private String name;
 
-    public OutsideTagState(XMLCheck checker){
+    public NameTagState(XMLCheck checker, char first){
         this.checker = checker;
+        name = ""+first;
     }
 
     @Override
     public void forwardSlashDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("(OTS)There shouldn't be a / yet");
+        throw new InvalidTagException("(NTS)\"/\" is an invalid character for tag names");
     }
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
-        checker.setState(new DetectTagState(checker));
+        throw new InvalidTagException("(NTS)Starting a new tag within a tag");
     }
 
     @Override
     public void greaterThanDetected(int lineNumber) throws InvalidTagException {
-        throw new InvalidTagException("(OTS)Tag never started");
+        checker.pushToStack(name);
+        checker.setState(new ReadDataState(checker));
     }
 
     @Override
     public void whiteSpaceDetected(int lineNumber) throws InvalidTagException {
-        //NO-OP Just need to ignore whitespace
+        throw new InvalidTagException("(NTS)Whitespace in tags is not allowed");
     }
 
     @Override
     public void regularCharacter(int lineNumber, char ch) throws InvalidTagException {
-        throw new InvalidTagException("(OTS)Invalid char " + ch + " outside of tags");
+        name+=ch;
     }
 }
