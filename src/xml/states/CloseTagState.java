@@ -25,8 +25,7 @@ public class CloseTagState implements IXMLState {
 
     @Override
     public void greaterThanDetected(int lineNumber) throws InvalidTagException {
-        String prev = checker.popFromStack();
-        if(!name.equals(prev)){
+        if(!name.equals(checker.popFromStack())){
             throw new InvalidTagException("(CTS)Mismatched opening and closing tags");
         }
         checker.setState(new OutsideTagState(checker));

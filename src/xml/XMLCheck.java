@@ -1,6 +1,7 @@
 package xml;
 
 import util.FileInput;
+import util.FileOutput;
 import xml.states.IXMLState;
 import xml.states.OutsideTagState;
 
@@ -12,12 +13,14 @@ public class XMLCheck {
     private int errorLine;
     private Stack<String> tagStack;
     private IXMLState state;
+    private XMLPrinter printer;
 
-    public XMLCheck(FileInput input){
+    public XMLCheck(FileInput input, FileOutput writer){
         this.input = input;
         state = null;
         tagStack = new Stack<String>();
         errorLine = 0;
+        printer = new XMLPrinter(writer);
     }
 
     public boolean doCheck(){
@@ -26,6 +29,7 @@ public class XMLCheck {
             errorLine++;
             String checked = input.readLine();
             if(checked==null){
+                printer.printXML();
                 return true;
             }
             for(int i=0; i<checked.length(); i++){
@@ -52,6 +56,7 @@ public class XMLCheck {
             System.out.println("All tags did not get closed");
             return false;
         }
+        printer.printXML();
         return true;
     }
 
@@ -68,6 +73,7 @@ public class XMLCheck {
     }
 
     public void pushToStack(String elem){
+        printer.addItemToQueue(new XMLTag(elem));
         System.out.println("Pushing " + elem + " to the stack");
         tagStack.push(elem);
     }
@@ -79,7 +85,13 @@ public class XMLCheck {
         }catch(EmptyStackException e){
             throw new InvalidTagException("Extra closing tags detected");
         }
+        printer.addItemToQueue(new XMLTag("/"+s));
         System.out.println("Popping " + s + " from the stack");
         return s;
+    }
+
+    public void addDataToQueue(String s){
+        XMLData newData = new XMLData(s);
+        printer.addItemToQueue(newData);
     }
 }

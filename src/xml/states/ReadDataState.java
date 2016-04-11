@@ -7,10 +7,12 @@ public class ReadDataState implements IXMLState {
 
     private XMLCheck checker;
     private boolean errorFlag;
+    private String string;
 
     public ReadDataState(XMLCheck checker){
         this.checker = checker;
         errorFlag = false;
+        string="";
     }
 
     @Override
@@ -20,6 +22,7 @@ public class ReadDataState implements IXMLState {
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
+        checker.addDataToQueue(string);
         checker.setState(new EndReadDataState(checker, errorFlag));
     }
 
@@ -37,5 +40,6 @@ public class ReadDataState implements IXMLState {
     public void regularCharacter(int lineNumber, char ch) throws InvalidTagException {
         //NO-OP Not worried about constructing the new file yet
         errorFlag = true;
+        string+=ch;
     }
 }
