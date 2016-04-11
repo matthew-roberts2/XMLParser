@@ -3,6 +3,10 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
+/**
+ * State for reading data from after an opening tag, to before a closing tag.
+ */
+
 public class ReadDataState implements IXMLState {
 
     private XMLCheck checker;

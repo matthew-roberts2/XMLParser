@@ -3,6 +3,10 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
+/**
+ * State that handles reading the names of only closing tags.
+ */
+
 public class CloseTagState implements IXMLState {
 
     private XMLCheck checker;

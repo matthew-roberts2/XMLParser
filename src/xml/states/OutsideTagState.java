@@ -3,6 +3,10 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
+/**
+ * State for handling initial parsing (before the first tag) as well as space after closing tags
+ */
+
 public class OutsideTagState implements IXMLState{
 
     private XMLCheck checker;

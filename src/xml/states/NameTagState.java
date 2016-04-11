@@ -3,6 +3,10 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
+/**
+ * State used for reading the characters in only the opening tags
+ */
+
 public class NameTagState implements IXMLState{
 
     private XMLCheck checker;

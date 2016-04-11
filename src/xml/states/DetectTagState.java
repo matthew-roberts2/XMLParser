@@ -3,6 +3,10 @@ package xml.states;
 import xml.InvalidTagException;
 import xml.XMLCheck;
 
+/**
+ * State that handles determining whether a tag is an opening tag or closing tag, if the previous state was {@link OutsideTagState}.
+ */
+
 public class DetectTagState implements IXMLState{
 
     private XMLCheck checker;
