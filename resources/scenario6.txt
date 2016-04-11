@@ -1,0 +1,48 @@
+<music>
+<metal></metal>
+   <artist><cds>
+         <cd>
+         <title>One For Sorrow</title>
+         <year>2011</year>
+         <songs>
+            <song>   
+               <title>Inertia</title>
+               <length>3:43</length>
+            </song><song>   
+               <title>Through the Shadows</title><length>4:32</length>
+            </song>
+            <song>   
+               <title>Song of the Blackest Bird</title>
+               <length>7:29</length>
+            </song>
+            <song>   
+               <title>Only One Who W
+ants</title>
+               <length>5:18</length>
+            </song>
+            <song>   
+               <title>Unsung</title>
+               <length>5:04</length>
+            </song>
+            <song>   
+               <title>Every Hour Wounds</title>
+               <length>5:24</length>
+            </song>
+            <song>   
+               <title>Decoherence</title>
+               <length>3:18</length>
+            </song>
+            <song>   
+               <title>Lay the Ghost to Rest</title>
+               <length>7:46</length>
+            </song>
+            <song>   
+               <title>Regain the Fire</title>
+               <length>4:26</length>
+            </song>
+            <song>   
+               <title>One For Sorrow</title>
+               <length>6:07</length>
+            </song>
+         </songs>
+         </cd></cds></artist></music></music>

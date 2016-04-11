@@ -29,6 +29,10 @@ public class XMLCheck {
             errorLine++;
             String checked = input.readLine();
             if(checked==null){
+				if(!tagStack.isEmpty()){
+					System.out.println("All tags did not get closed");
+					return false;
+				}
                 input.close();
                 printer.printXML();
                 return true;

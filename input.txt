@@ -1,0 +1,15 @@
+resources/scenario1.txt 
+resources/scenario1_out.txt
+resources/scenario2.txt 
+resources/scenario2_out.txt
+resources/scenario3.txt 
+resources/scenario3_out.txt
+resources/scenario4.txt 
+resources/scenario4_out.txt
+resources/scenario5.txt 
+resources/scenario5_out.txt
+resources/scenario6.txt 
+resources/scenario6_out.txt
+resources/scenario7.txt 
+resources/scenario7_out.txt
+q

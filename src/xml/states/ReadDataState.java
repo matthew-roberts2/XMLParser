@@ -22,7 +22,7 @@ public class ReadDataState implements IXMLState {
 
     @Override
     public void lessThanDetected(int lineNumber) throws InvalidTagException {
-        checker.addDataToQueue(string);
+        if(!string.equals("")) checker.addDataToQueue(string);
         checker.setState(new EndReadDataState(checker, errorFlag));
     }
 
@@ -33,7 +33,7 @@ public class ReadDataState implements IXMLState {
 
     @Override
     public void whiteSpaceDetected(int lineNumber) throws InvalidTagException {
-        //NO-OP Whitespace doesnt matter between tags
+        if(!string.equals("")) string+=" ";
     }
 
     @Override
