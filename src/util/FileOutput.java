@@ -19,7 +19,6 @@ public class FileOutput
     }
 
     public void writeLine(String s){
-        System.out.println("Printing stuff to the file");
         try{
             writer.write(s);
         }catch(IOException e){
@@ -30,7 +29,7 @@ public class FileOutput
     public void close(){
         try{
             writer.close();
-        }catch(IOException e){
+        }catch (IOException e){
             e.printStackTrace();
         }
     }

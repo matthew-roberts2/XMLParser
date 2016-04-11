@@ -29,6 +29,7 @@ public class XMLCheck {
             errorLine++;
             String checked = input.readLine();
             if(checked==null){
+                input.close();
                 printer.printXML();
                 return true;
             }
@@ -56,6 +57,7 @@ public class XMLCheck {
             System.out.println("All tags did not get closed");
             return false;
         }
+        input.close();
         printer.printXML();
         return true;
     }

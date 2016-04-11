@@ -32,7 +32,6 @@ public class XMLPrinter {
                 s+=getTabs(indentCounter)+nextItem.getXMLedContents()+"\n";
             }
         }
-        System.out.println("Im doing a writty thing");
         writer.writeLine(s);
         writer.close();
     }

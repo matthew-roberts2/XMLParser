@@ -14,6 +14,7 @@ public class FileInput {
     }
 
     public boolean setFile(String fileName){
+        eof = false;
         try{
             FileReader fr = new FileReader(fileName);
             reader = new BufferedReader(fr);
@@ -32,6 +33,14 @@ public class FileInput {
             e.printStackTrace();
         }
         return s;
+    }
+
+    public void close(){
+        try{
+            reader.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public boolean isDone(){
